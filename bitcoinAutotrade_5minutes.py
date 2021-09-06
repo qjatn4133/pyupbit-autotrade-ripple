@@ -49,27 +49,27 @@ upbit = pyupbit.Upbit(access, secret)
 print("autotrade start")
 
 
-##!!! 현재 매매 코인명 : 에브리피디아(FCT2)
+##!!! 현재 매매 코인명 : 아이콘(ICX)
 
 # 자동매매 시작
 while True:
     try:
         now = datetime.datetime.now()
-        start_time = get_start_time_minute5("KRW-FCT2") #9:00
+        start_time = get_start_time_minute5("KRW-ICX") #9:00
         end_time = start_time + datetime.timedelta(minutes=5) #9:00 + 5분
 
         # 9:00 < 현재 < # 9:04:55
         if start_time < now < end_time - datetime.timedelta(seconds=5):
-            target_price = get_target_price_minute5("KRW-FCT2", 0.5)
-            current_price = get_current_price("KRW-FCT2")
+            target_price = get_target_price_minute5("KRW-ICX", 0.5)
+            current_price = get_current_price("KRW-ICX")
             if target_price < current_price:
                 krw = get_balance("KRW")
                 if krw > 5000:
-                    upbit.buy_market_order("KRW-FCT2", krw*0.9995)
+                    upbit.buy_market_order("KRW-ICX", krw*0.9995)
         else:
-            FCT2 = get_balance("FCT2")
-            if FCT2 > 0.00008:
-                upbit.sell_market_order("KRW-FCT2", FCT2*0.9995)
+            ICX = get_balance("ICX")
+            if ICX > 0.00008:
+                upbit.sell_market_order("KRW-ICX", ICX*0.9995)
         time.sleep(1)
     except Exception as e:
         print(e)
