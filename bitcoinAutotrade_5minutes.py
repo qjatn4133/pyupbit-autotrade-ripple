@@ -49,27 +49,27 @@ upbit = pyupbit.Upbit(access, secret)
 print("autotrade start")
 
 
-##!!! 현재 매매 코인명 : 아이콘(ICX)
+##!!! 현재 매매 코인명 : 스토리지(STORJ)
 
 # 자동매매 시작
 while True:
     try:
         now = datetime.datetime.now()
-        start_time = get_start_time_minute5("KRW-ICX") #9:00
+        start_time = get_start_time_minute5("KRW-STORJ") #9:00
         end_time = start_time + datetime.timedelta(minutes=5) #9:00 + 5분
 
         # 9:00 < 현재 < # 9:04:55
         if start_time < now < end_time - datetime.timedelta(seconds=5):
-            target_price = get_target_price_minute5("KRW-ICX", 0.5)
-            current_price = get_current_price("KRW-ICX")
+            target_price = get_target_price_minute5("KRW-STORJ", 0.5)
+            current_price = get_current_price("KRW-STORJ")
             if target_price < current_price:
                 krw = get_balance("KRW")
                 if krw > 5000:
-                    upbit.buy_market_order("KRW-ICX", krw*0.9995)
+                    upbit.buy_market_order("KRW-STORJ", krw*0.9995)
         else:
-            ICX = get_balance("ICX")
-            if ICX > 0.00008:
-                upbit.sell_market_order("KRW-ICX", ICX*0.9995)
+            STORJ = get_balance("STORJ")
+            if STORJ > 0.00008:
+                upbit.sell_market_order("KRW-STORJ", STORJ*0.9995)
         time.sleep(1)
     except Exception as e:
         print(e)
