@@ -56,7 +56,7 @@ while True:
     try:
         now = datetime.datetime.now()
         start_time = get_start_time_minute1("KRW-BCHA") #9:00
-        end_time = start_time + datetime.timedelta(minutes=5) #9:00 + 1분
+        end_time = start_time + datetime.timedelta(minutes=1) #9:00 + 1분
 
         # 9:00 < 현재 < # 9:00:55
         if start_time < now < end_time - datetime.timedelta(seconds=5):
