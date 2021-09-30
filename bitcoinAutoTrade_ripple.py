@@ -40,21 +40,21 @@ print("autotrade start")
 while True:
     try:
         now = datetime.datetime.now()
-        start_time = get_start_time("KRW-BCHA") #9:00
+        start_time = get_start_time("KRW-XEC") #9:00
         end_time = start_time + datetime.timedelta(days=1) #9:00 + 1일
 
         # 9:00 < 현재 < #8:59:50
         if start_time < now < end_time - datetime.timedelta(seconds=10):
-            target_price = get_target_price("KRW-BCHA", 0.5)
-            current_price = get_current_price("KRW-BCHA")
+            target_price = get_target_price("KRW-XEC", 0.5)
+            current_price = get_current_price("KRW-XEC")
             if target_price < current_price:
                 krw = get_balance("KRW")
                 if krw > 5000:
-                    upbit.buy_market_order("KRW-BCHA", krw*0.9995)
+                    upbit.buy_market_order("KRW-XEC", krw*0.9995)
         else:
-            BCHA = get_balance("BCHA")
-            if BCHA > 0.00008:
-                upbit.sell_market_order("KRW-BCHA", BCHA*0.9995)
+            XEC = get_balance("XEC")
+            if XEC > 0.00008:
+                upbit.sell_market_order("KRW-XEC", XEC*0.9995)
         time.sleep(1)
     except Exception as e:
         print(e)
